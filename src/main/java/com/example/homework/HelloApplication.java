@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -33,10 +34,13 @@ public class HelloApplication extends Application {
     private static ArrayList<MonthSales> monthSales = new ArrayList<>();
     @Override
     public void start(Stage stage) throws IOException {
-        VBox root = new VBox();
-        Button button = new Button("Choose the File");
-        root.getChildren().add(button);
-        button.setOnAction(event -> {
+        Button btn = new Button("Choose the File");
+        btn.setPrefSize(150, 80);
+        btn.setMinSize(75, 40);
+        btn.setMaxSize(225, 120);
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        btn.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel файлы (*.xls, *.xlsx)", "*.xls", "*.xlsx"));
             File file = fileChooser.showOpenDialog(stage);
@@ -48,7 +52,7 @@ public class HelloApplication extends Application {
             }
 
         });
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 720, 480);
         stage.setTitle("Main menu");
         stage.setScene(scene);
         stage.show();
